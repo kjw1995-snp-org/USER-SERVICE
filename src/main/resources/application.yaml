@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: snp-user-service
+  profiles:
+    active: local
+  config:
+    import: optional:configserver:http://localhost:8887
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    instance-id: snp-user-service
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+
+server:
+  port: 8002
