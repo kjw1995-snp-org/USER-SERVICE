@@ -35,6 +35,21 @@ dependencies {
 
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
 
+    /*
+	 * jpa + querydsl
+	 */
+    implementation 'org.hibernate:hibernate-entitymanager'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    implementation "com.querydsl:querydsl-jpa"
+
+    implementation "com.querydsl:querydsl-apt"
+
+    implementation "com.querydsl:querydsl-sql"
+
+    implementation "com.querydsl:querydsl-core"
+
     compileOnly 'org.projectlombok:lombok'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'

@@ -1,4 +1,4 @@
-package com.snp.userservice.controller;
+package com.snp.userservice.controller.login;
 
 import com.snp.userservice.global.GlobalUrl;
 import org.springframework.stereotype.Controller;
