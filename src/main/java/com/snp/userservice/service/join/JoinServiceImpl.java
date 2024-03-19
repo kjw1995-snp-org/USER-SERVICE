@@ -21,6 +21,8 @@ public class JoinServiceImpl implements JoinService {
     public ApiResponseDto joinProgress(JoinRequestDto requestDto) {
         try {
 
+            logger.info("회원가입 요청 정보 = {}", requestDto);
+
             memberRepository.save(
                     Member.builder()
                             .memId(requestDto.getId())

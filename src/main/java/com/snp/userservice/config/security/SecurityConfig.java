@@ -14,9 +14,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeHttpRequests()
-                .antMatchers(GlobalUrl.JOIN_PROGRESS + "/**").permitAll();
-
+        http.authorizeHttpRequests().anyRequest().permitAll();
+        http.csrf().ignoringAntMatchers(GlobalUrl.JOIN_PROGRESS + "/**");
         return http.build();
 
     }
