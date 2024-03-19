@@ -17,6 +17,3 @@ management:
   endpoint:
     shutdown:
       enabled: true
-
-server:
-  port: 8002
