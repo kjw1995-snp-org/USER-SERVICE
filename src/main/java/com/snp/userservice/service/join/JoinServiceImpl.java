@@ -40,7 +40,7 @@ public class JoinServiceImpl implements JoinService {
                                  .build();
 
         } catch(Exception e) {
-            logger.debug("회원가입 실패 오류 발생, message = {}", e.getMessage());
+            logger.info("회원가입 실패 오류 발생, message = {}", e.getMessage());
             return ApiResponseDto.builder()
                                  .status(ApiResponseDto.ApiResponseStatus.ERR)
                                  .message("회원가입 실패")
