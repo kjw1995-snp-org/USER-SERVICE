@@ -46,9 +46,7 @@ public class LoginServiceImpl implements LoginService {
                                  .build();
         }
 
-        JwtBuilder JwtToken = Jwts.builder();
-
-
         return null;
+
     }
 }
