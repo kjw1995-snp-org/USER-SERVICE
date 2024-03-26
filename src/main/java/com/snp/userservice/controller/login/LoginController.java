@@ -7,6 +7,8 @@ import com.snp.userservice.service.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class LoginController {
@@ -15,6 +17,7 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping(GlobalUrl.LOGIN_ACTION)
-    public ApiResponseDto login(LoginRequestDto loginRequestDto) { return loginService.login(loginRequestDto); }
+    @ResponseBody
+    public ApiResponseDto login(@RequestBody LoginRequestDto loginRequestDto) { return loginService.login(loginRequestDto); }
 
 }
