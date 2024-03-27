@@ -17,3 +17,6 @@ management:
   endpoint:
     shutdown:
       enabled: true
+
+jwt:
+  import: optional:configserver:http://localhost:8887/snp-jwt-config/local
