@@ -1,4 +1,4 @@
-package com.snp.userservice.dto.api.response;
+package com.snp.userservice.dto.api.request;
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
@@ -12,17 +12,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ApiResponseDto<T> {
-
-    public enum ApiResponseStatus {
-        SUC, FAIL, ERR
-    }
-
-    private ApiResponseStatus status;
+public class ApiRequestDto<T> {
 
     private T data;
-
-    private String message;
 
     private String jwtToken;
 

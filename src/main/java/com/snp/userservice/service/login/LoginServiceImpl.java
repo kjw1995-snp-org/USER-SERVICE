@@ -1,6 +1,7 @@
 package com.snp.userservice.service.login;
 
 import com.snp.userservice.common.jwt.JwtTokenProvideService;
+import com.snp.userservice.dto.api.request.ApiRequestDto;
 import com.snp.userservice.dto.api.response.ApiResponseDto;
 import com.snp.userservice.dto.login.request.LoginRequestDto;
 import com.snp.userservice.jpa.entity.Member;
@@ -24,9 +25,9 @@ public class LoginServiceImpl implements LoginService {
     private PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
     @Override
-    public ApiResponseDto login(LoginRequestDto loginRequestDto) {
+    public ApiResponseDto<Object> login(ApiRequestDto<LoginRequestDto> loginRequestDto) {
 
-        String memberId = loginRequestDto.getId();
+        String memberId = loginRequestDto.getData().getId();
 
         Member member = memberRepository.findByMemId(memberId);
 
@@ -37,11 +38,12 @@ public class LoginServiceImpl implements LoginService {
                                  .build();
         }
 
-        String password = loginRequestDto.getPassword();
+        String password = loginRequestDto.getData().getPassword();
         String memberPassword = member.getPassword();
         BCryptPasswordEncoder passwordEncoder = (BCryptPasswordEncoder) passwordEncoder();
 
         if(!passwordEncoder.matches(password, memberPassword)) {
+
             return ApiResponseDto.builder()
                                  .status(ApiResponseDto.ApiResponseStatus.FAIL)
                                  .message("비밀번호가 틀렸습니다.")
@@ -52,7 +54,7 @@ public class LoginServiceImpl implements LoginService {
 
         return ApiResponseDto.builder()
                              .status(ApiResponseDto.ApiResponseStatus.SUC)
-                             .data(jwtToken)
+                             .jwtToken(jwtToken)
                              .message("로그인 성공")
                              .build();
 

@@ -1,5 +1,6 @@
 package com.snp.userservice.controller.login;
 
+import com.snp.userservice.dto.api.request.ApiRequestDto;
 import com.snp.userservice.dto.api.response.ApiResponseDto;
 import com.snp.userservice.dto.login.request.LoginRequestDto;
 import com.snp.userservice.global.GlobalUrl;
@@ -18,6 +19,6 @@ public class LoginController {
 
     @PostMapping(GlobalUrl.LOGIN_ACTION)
     @ResponseBody
-    public ApiResponseDto login(@RequestBody LoginRequestDto loginRequestDto) { return loginService.login(loginRequestDto); }
+    public ApiResponseDto<Object> login(@RequestBody ApiRequestDto<LoginRequestDto> loginRequestDto) { return loginService.login(loginRequestDto); }
 
 }
