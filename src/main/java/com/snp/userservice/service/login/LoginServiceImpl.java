@@ -1,9 +1,10 @@
 package com.snp.userservice.service.login;
 
-import com.snp.userservice.common.jwt.JwtTokenProvideService;
+import com.snp.userservice.common.token.TokenProvide;
 import com.snp.userservice.dto.api.request.ApiRequestDto;
 import com.snp.userservice.dto.api.response.ApiResponseDto;
 import com.snp.userservice.dto.login.request.LoginRequestDto;
+import com.snp.userservice.dto.login.response.LoginResponseDto;
 import com.snp.userservice.jpa.entity.Member;
 import com.snp.userservice.jpa.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class LoginServiceImpl implements LoginService {
     private MemberRepository memberRepository;
 
     @Autowired
-    private JwtTokenProvideService jwtTokenProvideService;
+    private TokenProvide jwtTokenProvideService;
 
     @Bean
     private PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
@@ -51,10 +52,15 @@ public class LoginServiceImpl implements LoginService {
         }
 
         String jwtToken = jwtTokenProvideService.createAccessToken(member);
+        LoginResponseDto loginResponseDto = LoginResponseDto.builder()
+                                                            .id(member.getMemId())
+                                                            .name(member.getName())
+                                                            .build();
 
         return ApiResponseDto.builder()
                              .status(ApiResponseDto.ApiResponseStatus.SUC)
                              .jwtToken(jwtToken)
+                             .data(loginResponseDto)
                              .message("로그인 성공")
                              .build();
 

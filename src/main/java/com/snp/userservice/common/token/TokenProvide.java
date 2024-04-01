@@ -1,8 +1,8 @@
-package com.snp.userservice.common.jwt;
+package com.snp.userservice.common.token;
 
 import com.snp.userservice.jpa.entity.Member;
 
-public interface JwtTokenProvideService {
+public interface TokenProvide {
 
     String createAccessToken(Member member);
 
