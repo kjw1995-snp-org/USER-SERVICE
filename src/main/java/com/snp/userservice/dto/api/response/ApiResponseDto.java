@@ -24,6 +24,4 @@ public class ApiResponseDto<T> {
 
     private String message;
 
-    private String jwtToken;
-
 }

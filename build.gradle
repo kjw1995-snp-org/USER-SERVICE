@@ -31,11 +31,9 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.springframework.cloud:spring-cloud-starter-config'
 
-    implementation 'mysql:mysql-connector-java'
+    implementation 'mysql:mysql-connector-java:8.0.17'
 
-    /*
-	 * jpa + querydsl
-	 */
+    // JPA + QueryDSL
     implementation 'org.hibernate:hibernate-entitymanager'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation "com.querydsl:querydsl-jpa"
@@ -43,14 +41,11 @@ dependencies {
     implementation "com.querydsl:querydsl-sql"
     implementation "com.querydsl:querydsl-core"
 
-    /*
-     * Crypto
-     */
+    // Crypto
     implementation group: 'org.springframework.security', name: 'spring-security-crypto'
 
-    /*
-     * JWT(Json Web Token)
-     */
+
+    // JWT(Json Web Token)
     implementation 'io.jsonwebtoken:jjwt-api:0.11.2'
     runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.2', 'io.jsonwebtoken:jjwt-jackson:0.11.2'
 

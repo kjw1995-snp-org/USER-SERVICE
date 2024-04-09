@@ -1,7 +1,6 @@
 package com.snp.userservice.service.login;
 
 import com.snp.userservice.common.token.TokenProvide;
-import com.snp.userservice.dto.api.request.ApiRequestDto;
 import com.snp.userservice.dto.api.response.ApiResponseDto;
 import com.snp.userservice.dto.login.request.LoginRequestDto;
 import com.snp.userservice.dto.login.response.LoginResponseDto;
@@ -26,26 +25,26 @@ public class LoginServiceImpl implements LoginService {
     private PasswordEncoder passwordEncoder() { return new BCryptPasswordEncoder(); }
 
     @Override
-    public ApiResponseDto<Object> login(ApiRequestDto<LoginRequestDto> loginRequestDto) {
+    public ApiResponseDto<LoginResponseDto> login(LoginRequestDto loginRequestDto) {
 
-        String memberId = loginRequestDto.getData().getId();
+        String memberId = loginRequestDto.getId();
 
         Member member = memberRepository.findByMemId(memberId);
 
         if(member == null) {
-            return ApiResponseDto.builder()
+            return ApiResponseDto.<LoginResponseDto>builder()
                                  .status(ApiResponseDto.ApiResponseStatus.FAIL)
                                  .message("존재하지 않는 회원입니다.")
                                  .build();
         }
 
-        String password = loginRequestDto.getData().getPassword();
+        String password = loginRequestDto.getPassword();
         String memberPassword = member.getPassword();
         BCryptPasswordEncoder passwordEncoder = (BCryptPasswordEncoder) passwordEncoder();
 
         if(!passwordEncoder.matches(password, memberPassword)) {
 
-            return ApiResponseDto.builder()
+            return ApiResponseDto.<LoginResponseDto>builder()
                                  .status(ApiResponseDto.ApiResponseStatus.FAIL)
                                  .message("비밀번호가 틀렸습니다.")
                                  .build();
@@ -55,11 +54,11 @@ public class LoginServiceImpl implements LoginService {
         LoginResponseDto loginResponseDto = LoginResponseDto.builder()
                                                             .id(member.getMemId())
                                                             .name(member.getName())
+                                                            .jwtToken(jwtToken)
                                                             .build();
 
-        return ApiResponseDto.builder()
+        return ApiResponseDto.<LoginResponseDto>builder()
                              .status(ApiResponseDto.ApiResponseStatus.SUC)
-                             .jwtToken(jwtToken)
                              .data(loginResponseDto)
                              .message("로그인 성공")
                              .build();
