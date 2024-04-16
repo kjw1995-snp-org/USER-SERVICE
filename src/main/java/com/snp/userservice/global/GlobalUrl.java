@@ -10,4 +10,8 @@ public class GlobalUrl {
     public static final String JOIN_URI = ROOT_URI + "/join";
     public static final String JOIN_PROGRESS = JOIN_URI + "/progress";
 
+    public static final String INQUIRY_URI = ROOT_URI + "/inquiry";
+    public static final String INQUIRY_MEMBER = INQUIRY_URI + "/member";
+    public static final String INQUIRY_MEMBERS = INQUIRY_URI + "/members";
+
 }
