@@ -44,6 +44,7 @@ public class InquiryServiceImpl implements InquiryService {
 
         for (Member member : memberList) {
             MemberInquiryResponseDto memberInquiryResponseDto = MemberInquiryResponseDto.builder()
+                    .memberIdx(member.getId())
                     .memberId(member.getMemId())
                     .memberName(member.getName())
                     .build();

@@ -52,6 +52,7 @@ public class LoginServiceImpl implements LoginService {
 
         String jwtToken = jwtTokenProvideService.createAccessToken(member);
         LoginResponseDto loginResponseDto = LoginResponseDto.builder()
+                                                            .memberIdx(member.getId())
                                                             .id(member.getMemId())
                                                             .name(member.getName())
                                                             .jwtToken(jwtToken)

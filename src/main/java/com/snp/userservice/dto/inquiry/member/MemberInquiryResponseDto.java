@@ -9,6 +9,8 @@ import lombok.*;
 @Setter
 public class MemberInquiryResponseDto {
 
+    private Integer memberIdx;
+
     private String memberId;
 
     private String memberName;
